@@ -15,7 +15,7 @@
     <?php endif ?>
     <div class="row my-5 text-center flex-">
         <a class="nav-link" href="#">@OCGRAFX</a>
-        <span>Droit réservers au tuteur Mr KANE</span>
+        <span>Droit réservers au tuteur Mr KANE👌 & Mr NDIAYE😁</span>
     </div>
 </footer>
 </body>

@@ -72,7 +72,7 @@ include_once '../includes/header.php';
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary" value="S'inscrire/mettre à jour">
+                        <input type="submit" id="submitButton" class="btn btn-primary" value="S'inscrire/mettre à jour">
                     </div>
                     <div class="col-md-6">
                         <input type="reset" class="btn btn-secondary">
@@ -85,68 +85,75 @@ include_once '../includes/header.php';
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Your code here
-        document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            // Validate each input field
-            if (!validateField("nom", "Nom")) {
-                event.preventDefault(); // Prevent form submission if validation fails
-            }
+        const registrationForm = document.getElementById("registrationForm");
+        const submitButton = document.getElementById("submitButton");
 
-            if (!validateField("prenom", "Prénom")) {
-                event.preventDefault();
-            }
-
-            if (!validateField("depart", "Department")) {
-                event.preventDefault();
-            }
-
-            if (!validateEmailField("mail", "Email")) {
+        registrationForm.addEventListener("submit", function(event) {
+            if (!validateNameField("nom", "Nom") ||
+                !validateNameField("prenom", "Prénom") ||
+                !validateNameField("depart", "Department") ||
+                !validateEmailField("mail", "Email")) {
                 event.preventDefault();
             }
         });
 
-        document.getElementById("nom").addEventListener("blur", function() {
-            validateField("nom", "Nom");
-        });
-
-        document.getElementById("prenom").addEventListener("blur", function() {
-            validateField("prenom", "Prénom");
-        });
-
-        document.getElementById("depart").addEventListener("blur", function() {
-            validateField("depart", "Department");
-        });
-
-        document.getElementById("mail").addEventListener("blur", function() {
-            validateEmailField("mail", "Email");
-        });
+        // Add blur event listeners for validation
+        addValidationListener("nom", "Nom");
+        addValidationListener("prenom", "Prénom");
+        addValidationListener("depart", "Department");
+        addValidationListener("mail", "Email");
 
         function validateField(fieldName, label) {
             const input = document.getElementById(fieldName);
             const errorSpan = document.getElementById(fieldName + "Error");
+            const isValid = input.value.trim() !== "";
 
-            if (input.value.trim() === "") {
-                errorSpan.textContent = label + " ne peut pas être vide.";
-                return false;
-            } else {
-                errorSpan.textContent = "";
-                return true;
-            }
+            updateErrorSpan(errorSpan, label, isValid);
+
+            return isValid;
         }
 
         function validateEmailField(fieldName, label) {
             const input = document.getElementById(fieldName);
             const errorSpan = document.getElementById(fieldName + "Error");
-
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailPattern.test(input.value.trim());
 
-            if (!emailPattern.test(input.value.trim())) {
-                errorSpan.textContent = "Format d'email invalide.";
-                return false;
-            } else {
-                errorSpan.textContent = "";
-                return true;
-            }
+            updateErrorSpan(errorSpan, "Format d'email invalide.", isValid);
+
+            return isValid;
+        }
+
+        function validateNameField(fieldName, label) {
+            const input = document.getElementById(fieldName);
+            const errorSpan = document.getElementById(fieldName + "Error");
+            const namePattern = /^[A-Za-z]+$/;
+            const isValid = namePattern.test(input.value.trim());
+
+            updateErrorSpan(errorSpan, "Le champ " + label + " ne doit contenir que des lettres.", isValid);
+
+            return isValid;
+        }
+
+        function addValidationListener(fieldName, label) {
+            const input = document.getElementById(fieldName);
+            input.addEventListener("blur", function() {
+                validateNameField(fieldName, label);
+                updateSubmitButtonState();
+            });
+        }
+
+        function updateErrorSpan(errorSpan, message, isValid) {
+            errorSpan.textContent = isValid ? "" : message;
+        }
+
+        function updateSubmitButtonState() {
+            submitButton.disabled = !(
+                validateNameField("nom", "Nom") &&
+                validateNameField("prenom", "Prénom") &&
+                validateNameField("depart", "Department") &&
+                validateEmailField("mail", "Email")
+            );
         }
     });
 </script>

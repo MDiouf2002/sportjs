@@ -33,7 +33,7 @@ else{
             <?php endif ?>
         </h1>
         <?php if (!empty($practicedSports)) : ?>
-            <div class="text-light fs-4 d-flex justify-content-center">Pratiques: <?php echo implode('/', $practicedSports); ?></div>
+            <div class="text-light fs-4 d-flex justify-content-center">Pratique(s): <?php echo implode('/', $practicedSports); ?></div>
         <?php endif; ?>
 
     </div>
