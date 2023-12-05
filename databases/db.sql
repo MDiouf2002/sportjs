@@ -1,0 +1,148 @@
+CREATE DATABASE IF NOT EXISTS sportifs;
+
+USE sportifs;
+
+CREATE TABLE IF NOT EXISTS sport (
+    sport_id INT AUTO_INCREMENT PRIMARY KEY,
+    design VARCHAR(255) NOT NULL
+);
+
+INSERT IGNORE INTO sport (design) VALUES
+    ('Basketball'),
+    ('Football'),
+    ('WWE'),
+    ('MMA');
+
+CREATE TABLE IF NOT EXISTS personne (
+    personne_id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    depart VARCHAR(255) NOT NULL,
+    mail VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pratique (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    personne_id INT,
+    sport_id INT,
+    niveau ENUM('débutant', 'confirmé', 'pro', 'supporter') NOT NULL,
+    FOREIGN KEY (personne_id) REFERENCES personne(personne_id),
+    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
+);
+
+
+
+
+INSERT INTO personne (nom, prenom, depart, mail) VALUES
+    ('Sow', 'Amadou', 'Dakar', 'amadou@example.com'),
+    ('Ndiaye', 'Aissatou', 'Thiès', 'aissatou@example.com'),
+    ('Diop', 'Mamadou', 'Ziguinchor', 'mamadou@example.com'),
+    ('Ba', 'Khadidiatou', 'Saint-Louis', 'khadidiatou@example.com'),
+    ('Diallo', 'Mohamed', 'Tambacounda', 'mohamed@example.com'),
+    ('Gueye', 'Bineta', 'Kaolack', 'bineta@example.com'),
+    ('Camara', 'Moussa', 'Dakar', 'moussa@example.com'),
+    ('Thiam', 'Mame', 'Dakar', 'mame@example.com'),
+    ('Kane', 'Modou', 'Dakar', 'modou@example.com'),
+    ('Sarr', 'Ndeye', 'Thiès', 'ndeye@example.com'),
+    ('Fall', 'Alioune', 'Ziguinchor', 'alioune@example.com'),
+    ('Faye', 'Binta', 'Dakar', 'binta@example.com'),
+    ('Cisse', 'Papa', 'Thiès', 'papa@example.com'),
+    ('Kouyaté', 'Nene', 'Dakar', 'nene@example.com'),
+    ('Diallo', 'Saliou', 'Saint-Louis', 'saliou@example.com'),
+    ('Sow', 'Fatou', 'Kaolack', 'fatou@example.com'),
+    ('Camara', 'Oumar', 'Dakar', 'oumar@example.com'),
+    ('Diop', 'Sokhna', 'Dakar', 'sokhna@example.com'),
+    ('Diallo', 'Idrissa', 'Thiès', 'idrissa@example.com'),
+    ('Sow', 'Mariama', 'Dakar', 'mariama@example.com'),
+    ('Sow', 'Fatou', 'Kaolack', 'fatou.sow@example.com'),
+    ('Camara', 'Oumar', 'Dakar', 'oumar.camara@example.com'),
+    ('Diop', 'Sokhna', 'Dakar', 'sokhna.diop@example.com'),
+    ('Diallo', 'Idrissa', 'Thiès', 'idrissa.diallo@example.com'),
+    ('Sow', 'Mariama', 'Dakar', 'mariama.sow@example.com'),
+    ('Gueye', 'Cheikh', 'Ziguinchor', 'cheikh.gueye@example.com'),
+    ('Thiam', 'Amina', 'Thiès', 'amina.thiam@example.com'),
+    ('Kane', 'Ousmane', 'Dakar', 'ousmane.kane@example.com'),
+    ('Sarr', 'Oumou', 'Kaolack', 'oumou.sarr@example.com'),
+    ('Fall', 'Moustapha', 'Saint-Louis', 'moustapha.fall@example.com'),
+    ('Faye', 'Adja', 'Dakar', 'adja.faye@example.com'),
+    ('Cisse', 'Mamadou', 'Ziguinchor', 'mamadou.cisse@example.com'),
+    ('Kouyaté', 'Mariam', 'Kaolack', 'mariam.kouyate@example.com'),
+    ('Diallo', 'Abdoulaye', 'Saint-Louis', 'abdoulaye.diallo@example.com'),
+    ('Diouf', 'Aissatou', 'Thiès', 'aissatou.diouf@example.com'),
+    ('Niang', 'Abdoul', 'Dakar', 'abdoul.niang@example.com'),
+    ('Kante', 'Hawa', 'Kaolack', 'hawa.kante@example.com'),
+    ('Mbengue', 'Omar', 'Saint-Louis', 'omar.mbengue@example.com'),
+    ('Toure', 'Aïda', 'Dakar', 'aida.toure@example.com'),
+    ('Ndao', 'Mamadou', 'Thiès', 'mamadou.ndao@example.com'),
+    ('Diene', 'Awa', 'Ziguinchor', 'awa.diene@example.com'),
+    ('Sylla', 'Boubacar', 'Dakar', 'boubacar.sylla@example.com'),
+    ('Ndiaye', 'Ndeye', 'Kaolack', 'ndeye.ndiaye@example.com'),
+    ('Kane', 'Astou', 'Thiès', 'astou.kane@example.com'),
+    ('Sow', 'Aliou', 'Dakar', 'aliou.sow@example.com'),
+    ('Camara', 'Fatim', 'Ziguinchor', 'fatim.camara@example.com'),
+    ('Thiam', 'Amadou', 'Kaolack', 'amadou.thiam@example.com'),
+    ('Sarr', 'Hawa', 'Dakar', 'hawa.sarr@example.com'),
+    ('Fall', 'Ousseynou', 'Thiès', 'ousseynou.fall@example.com'),
+    ('Faye', 'Aissatou', 'Saint-Louis', 'aissatou.faye@example.com'),
+    ('Cisse', 'Abdou', 'Dakar', 'abdou.cisse@example.com'),
+    ('Kouyaté', 'Ramatoulaye', 'Kaolack', 'ramatoulaye.kouyate@example.com'),
+    ('Diallo', 'Adama', 'Dakar', 'adama.diallo@example.com'),
+    ('Diouf', 'Babacar', 'Thiès', 'babacar.diouf@example.com'),
+    ('Niang', 'Hawa', 'Ziguinchor', 'hawa.niang@example.com'),
+    ('Kante', 'Ibrahima', 'Dakar', 'ibrahima.kante@example.com'),
+    ('Mbengue', 'Ndeye', 'Kaolack', 'ndeye.mbengue@example.com'),
+    ('Toure', 'Pape', 'Saint-Louis', 'pape.toure@example.com'),
+    ('Ndao', 'Aïssatou', 'Dakar', 'aissatou.ndao@example.com');
+
+
+INSERT INTO pratique (personne_id, sport_id, niveau) VALUES
+    (1, 1, 'confirmé'),
+    (2, 2, 'pro'),
+    (3, 1, 'débutant'),
+    (4, 3, 'confirmé'),
+    (5, 1, 'supporter'),
+    (6, 2, 'pro'),
+    (7, 4, 'débutant'),
+    (8, 1, 'confirmé'),
+    (9, 2, 'supporter'),
+    (10, 3, 'débutant'),
+    (11, 1, 'confirmé'),
+    (12, 2, 'pro'),
+    (13, 3, 'supporter'),
+    (14, 4, 'débutant'),
+    (15, 1, 'pro'),
+    (16, 2, 'confirmé'),
+    (17, 3, 'débutant'),
+    (18, 4, 'supporter'),
+    (19, 1, 'débutant'),
+    (20, 2, 'pro'),
+    (21, 3, 'confirmé'),
+    (22, 4, 'supporter'),
+    (23, 1, 'débutant'),
+    (24, 2, 'pro'),
+    (25, 3, 'confirmé'),
+    (26, 4, 'supporter'),
+    (27, 1, 'débutant'),
+    (28, 2, 'pro'),
+    (29, 3, 'confirmé'),
+    (30, 4, 'supporter'),
+    (31, 1, 'débutant'),
+    (32, 2, 'pro'),
+    (33, 3, 'confirmé'),
+    (34, 4, 'supporter'),
+    (35, 1, 'débutant'),
+    (36, 2, 'pro'),
+    (37, 3, 'confirmé'),
+    (38, 4, 'supporter'),
+    (39, 1, 'débutant'),
+    (40, 2, 'pro'),
+    (41, 3, 'confirmé'),
+    (42, 4, 'supporter'),
+    (43, 1, 'débutant'),
+    (44, 2, 'pro'),
+    (45, 3, 'confirmé'),
+    (46, 4, 'supporter'),
+    (47, 1, 'débutant'),
+    (48, 2, 'pro'),
+    (49, 3, 'confirmé'),
+    (50, 4, 'supporter');
