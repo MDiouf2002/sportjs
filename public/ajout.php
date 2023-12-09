@@ -13,30 +13,30 @@ include_once '../includes/header.php';
         <h1 class="text-center "><?php echo userGreating($user); ?></h1>
     </div>
     <div class="card vh-50">
-        <div class="card-body bg-light shadow-md">
+        <div class="card-body bg-white shadow-md">
             <form id="registrationForm" method="post" action="../scripts/ajout.php">
                 <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="nom" class="form-text">Nom</label>
-                        <input type="text" id="nom" name="nom" class="form-control" value="<?php echo $user['nom'] ?? ''; ?>">
+                        <input type="text" id="nom" name="nom" class="form-control bg-dark text-white" value="<?php echo $user['nom'] ?? ''; ?>">
                         <span id="nomError" class="text-danger"></span>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="prenom" class="form-text">Prénom</label>
-                        <input type="text" id="prenom" name="prenom" class="form-control" value="<?php echo $user['prenom'] ?? ''; ?>">
+                        <input type="text" id="prenom" name="prenom" class="form-control bg-dark text-white" value="<?php echo $user['prenom'] ?? ''; ?>">
                         <span id="prenomError" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="depart" class="form-text">Department</label>
-                        <input type="text" id="depart" name="depart" class="form-control" value="<?php echo $user['depart'] ?? ''; ?>">
+                        <input type="text" id="depart" name="depart" class="form-control bg-dark text-white" value="<?php echo $user['depart'] ?? ''; ?>">
                         <span id="departError" class="text-danger"></span>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="mail" class="form-text">Email</label>
-                        <input type="email" id="mail" name="mail" class="form-control" value="<?php echo $user['mail'] ?? ''; ?>">
+                        <input type="email" id="mail" name="mail" class="form-control bg-dark text-white" value="<?php echo $user['mail'] ?? ''; ?>">
                         <span id="mailError" class="text-danger"></span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ include_once '../includes/header.php';
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="sport_id" class="form-text">Sport</label>
-                        <select id="sport_id" name="sport_id" class="form-select">
+                        <select id="sport_id" name="sport_id" class="form-select bg-dark text-white">
                             <?php
                             $query = "SELECT sport_id, design FROM sport";
                             $result = $mysqli->query($query);
@@ -61,7 +61,7 @@ include_once '../includes/header.php';
                     </div>
                     <div class="col-md-6">
                         <label for="niveau" class="form-text">Niveau</label>
-                        <select id="niveau" name="niveau" class="form-select">
+                        <select id="niveau" name="niveau" class="form-select bg-dark text-white">
                             <option value="débutant">Débutant</option>
                             <option value="confirmé">Confirmé</option>
                             <option value="pro">Pro</option>
